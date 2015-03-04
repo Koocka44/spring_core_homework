@@ -2,14 +2,14 @@ package com.epam.training.springcore.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.epam.training.springcore.dao.CharacterAttributeDao;
+import com.epam.training.springcore.dao.CharacterAttributesDao;
 import com.epam.training.springcore.dao.WeaponDao;
-import com.epam.training.springcore.model.Weapon;
 import com.epam.training.springcore.model.Character;
+import com.epam.training.springcore.model.CharacterAttributes;
+import com.epam.training.springcore.model.Weapon;
 
 public class RpgService {
 	
@@ -17,7 +17,7 @@ public class RpgService {
 	private WeaponDao weaponDao;
 	
 	@Autowired
-	private CharacterAttributeDao characterAttributeDao;
+	private CharacterAttributesDao characterAttributesDao;
 	
 	public RpgService(){
 		
@@ -31,19 +31,19 @@ public class RpgService {
 		this.weaponDao = weaponDao;
 	}
 
-	public CharacterAttributeDao getCharacterAttributeDao() {
-		return characterAttributeDao;
+	public CharacterAttributesDao getCharacterAttributeDao() {
+		return characterAttributesDao;
 	}
 
-	public void setCharacterAttributeDao(CharacterAttributeDao characterAttributeDao) {
-		this.characterAttributeDao = characterAttributeDao;
+	public void setCharacterAttributeDao(CharacterAttributesDao characterAttributeDao) {
+		this.characterAttributesDao = characterAttributeDao;
 	}
 	
 	public List<Character> buildCharacters(){
 		List<Character> characterList = new ArrayList<Character>();
-		for(Entry<String,Integer> entry : characterAttributeDao.getAllCharacterAttributes().entrySet()){
-			String name = (String) entry.getKey();
-			Integer hp = (Integer) entry.getValue();
+		for(CharacterAttributes attributes : characterAttributesDao.getAllCharacterAttributes()){
+			String name = attributes.getName();
+			Integer hp = attributes.getHp();
 			Weapon weapon = weaponDao.getWeaponForName(name);
 			characterList.add(new Character(name,hp,weapon));
 		}

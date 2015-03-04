@@ -9,15 +9,18 @@ import com.epam.training.springcore.model.Character;
 import com.epam.training.springcore.service.RpgService;
 
 public class App {
+
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext(
 				"beans.xml");
-		
-//		AbstractApplicationContext context = new AnnotationConfigApplicationContext(
-//				SpringConfigurationDao.class,
-//				SpringConfigurationDatabaseConnection.class,
-//				SpringConfigurationService.class);
-		
+
+		// AbstractApplicationContext context = new
+		// AnnotationConfigApplicationContext(
+		// SpringConfigurationDao.class,
+		// SpringConfigurationDatabaseConnection.class,
+		// SpringConfigurationService.class);
+
 		RpgService rpgService = context.getBean("rpgService", RpgService.class);
 		List<Character> characters = rpgService.buildCharacters();
 		for (Character c : characters) {

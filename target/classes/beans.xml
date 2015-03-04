@@ -11,7 +11,7 @@
 
 	<bean id="weaponDao" class="com.epam.training.springcore.dao.WeaponDao" />
 
-	<bean id="characterAttributeDao" class="com.epam.training.springcore.dao.CharacterAttributeDao" />
+	<bean id="characterAttributeDao" class="com.epam.training.springcore.dao.CharacterAttributesDao" />
 
 	<bean id="rpgService" class="com.epam.training.springcore.service.RpgService" />
 
